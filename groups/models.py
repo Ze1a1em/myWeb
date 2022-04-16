@@ -26,7 +26,7 @@ class Group(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.pk = slugify(self.name)
+        # self.pk = slugify(self.name)
         self.description_html = misaka.html(self.description)
         super().save(*args, **kwargs)
 
