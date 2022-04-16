@@ -25,10 +25,10 @@ class ListGroups(generic.ListView):
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
-        return reverse("groups:single",kwargs={"slug": self.kwargs.get("slug")})
+        return reverse("groups:single",kwargs={"pk": self.kwargs.get("pk")})
 
     def get(self, request, *args, **kwargs):
-        group = get_object_or_404(Group,slug=self.kwargs.get("slug"))
+        group = get_object_or_404(Group,pk=self.kwargs.get("pk"))
 
         try:
             GroupMember.objects.create(user=self.request.user,group=group)
@@ -45,7 +45,7 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
 class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
 
     def get_redirect_url(self, *args, **kwargs):
-        return reverse("groups:single",kwargs={"slug": self.kwargs.get("slug")})
+        return reverse("groups:single",kwargs={"pk": self.kwargs.get("pk")})
 
     def get(self, request, *args, **kwargs):
 
@@ -53,7 +53,7 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
 
             membership = models.GroupMember.objects.filter(
                 user=self.request.user,
-                group__slug=self.kwargs.get("slug")
+                group__slug=self.kwargs.get("pk")
             ).get()
 
         except models.GroupMember.DoesNotExist:

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255, unique=True)),
-                ('slug', models.SlugField(allow_unicode=True, unique=True)),
+                ('pk', models.SlugField(allow_unicode=True, unique=True)),
                 ('description', models.TextField(blank=True, default='')),
                 ('description_html', models.TextField(blank=True, default='', editable=False)),
             ],
