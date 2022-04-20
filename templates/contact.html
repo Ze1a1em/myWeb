@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block bodyblock %}
+  
+<div class="section container">
+    
+    <div class="jumbotron">
+    <div class="text-center m-4">
+        <h1 class="h2 ">03 : Contact me</h1>
+    </div>
+        <form class="form" method="post">
+                <div class=" col m-4">
+
+                    <h3 class="m-5">
+                    {% csrf_token %}
+
+                    {{ form|crispy }}
+
+                    </h3>
+                    <a class="btn btn-success text-light pull-right" href="/submit">Submit</a>
+                </div>
+        </form>
+    </div>
+
+
+{% endblock bodyblock %}
